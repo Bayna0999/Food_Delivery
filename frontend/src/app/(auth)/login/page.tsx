@@ -1,10 +1,10 @@
-import { Login } from "@/components/Login";
-import React from "react";
+import LoginAcc from '@/components/LoginAcc';
+import React from 'react';
 
 const LoginPage = () => {
   return (
     <div className="justify-center items-center">
-      <Login />
+      <LoginAcc />
     </div>
   );
 };
