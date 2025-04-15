@@ -1,6 +1,8 @@
-import { CreateAcc } from '@/components';
-import React from 'react';
+import { CreateAcc } from "@/components";
+import React from "react";
 
-export const Sign_up = () => {
+const sign_up = () => {
   return <CreateAcc />;
 };
+
+export default sign_up;

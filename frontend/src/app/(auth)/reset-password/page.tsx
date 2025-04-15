@@ -1,5 +1,11 @@
+import Card from "@/components/Card";
 import React from "react";
 
-export const Reset_pass = () => {
-  return <div>Reset_pass</div>;
+const Reset_pass = () => {
+  return (
+    <div>
+      <Card />
+    </div>
+  );
 };
+export default Reset_pass;

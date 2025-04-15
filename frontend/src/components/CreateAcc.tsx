@@ -1,5 +1,5 @@
-import React from 'react';
-import { IoChevronBackOutline } from 'react-icons/io5';
+import React from "react";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 export const CreateAcc = () => {
   return (
@@ -15,11 +15,14 @@ export const CreateAcc = () => {
           Sign up to explore your favorite dishes.
         </p>
       </div>
-      <input
-        type="text"
-        placeholder="Enter your email address"
-        className="w-full h-[36px] border-[1px] border-[#71717A] rounded-md"
-      />
+      <div className="">
+        <input
+          type="text"
+          placeholder="Enter your email address"
+          className="w-full h-[36px] border-[1px] border-[#71717A] rounded-md"
+        />
+      </div>
+
       <button className="w-full bg-[#71717A] rounded-md text-white ">
         Let's Go
       </button>

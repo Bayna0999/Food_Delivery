@@ -1,5 +1,7 @@
 import React from "react";
 
-export const Forgot_pass = () => {
-  return <div>Forgot_pass</div>;
+const forgot_pass = () => {
+  return <div>forgot_pass</div>;
 };
+
+export default forgot_pass;
