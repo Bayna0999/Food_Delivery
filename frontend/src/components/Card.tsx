@@ -1,0 +1,24 @@
+import React from "react";
+type cardProps = {
+  content: string;
+  image: string;
+  foodname: string;
+  price: number;
+};
+const Card = ({ content, image, foodname, price }: cardProps) => {
+  return (
+    <div className="flex flex-col w-fit bg-yellow-400  h-fit rounded-2xl">
+      <div className="flex w-fit h-[210px] rounded-2xl mx-[16px] my-[16px]">
+        <img src={image} className="flex w-full h-full rounded-2xl" />
+      </div>
+      <div className="flex flex-col mx-[16px]  w-fit h-fit">
+        <div className="flex justify-between items-center w-fit h-fit  ">
+          <p className="text-[24px] text-[#FD543F]">{foodname} </p>
+          <p className="text-[18px] text-[#09090B]">${price}</p>
+        </div>
+        <p className="text-[14px] text-[#09090B] w-[365px] h-fit">{content}</p>
+      </div>
+    </div>
+  );
+};
+export default Card;

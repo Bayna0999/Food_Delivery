@@ -1,12 +1,12 @@
+"use client";
 import Card from "@/components/Card";
-import React from "react";
+import FoodCard from "@/components/FoodCard";
+import FoodGenre from "@/components/FoodGenre";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const homepage = () => {
-  return (
-    <div className="bg-red-400">
-      <Card />
-    </div>
-  );
+  return <FoodCard />;
 };
 
 export default homepage;
