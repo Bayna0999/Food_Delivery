@@ -1,11 +1,26 @@
 import mongoose, { Mongoose } from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
-  phoneNumber: String,
-  address: String,
-  isVerified: Boolean,
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  isVerified: {
+    type: Boolean,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

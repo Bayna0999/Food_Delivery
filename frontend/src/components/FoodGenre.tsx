@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import FoodDetail from "./FoodDetail";
 const FoodGenre = () => {
   const [foods, setFoods] = useState([]);
   const [istrue, setIstrue] = useState(false);
@@ -34,17 +35,21 @@ const FoodGenre = () => {
               <DialogTrigger>
                 <Card
                   foodname={value.foodname}
-                  content={value.content}
+                  content={value.context}
                   image={value.image}
                   price={value.price}
                 />
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Are you absolutely sure?</DialogTitle>
+                  <DialogTitle></DialogTitle>
                   <DialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
+                    <FoodDetail
+                      foodname={value.foodname}
+                      content={value.context}
+                      image={value.image}
+                      price={value.price}
+                    />
                   </DialogDescription>
                 </DialogHeader>
               </DialogContent>

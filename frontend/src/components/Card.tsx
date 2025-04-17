@@ -11,12 +11,12 @@ const Card = ({ content, image, foodname, price }: cardProps) => {
       <div className="flex w-fit h-[210px] rounded-2xl mx-[16px] my-[16px]">
         <img src={image} className="flex w-full h-full rounded-2xl" />
       </div>
-      <div className="flex flex-col mx-[16px]  w-fit h-fit">
-        <div className="flex justify-between items-center w-fit h-fit  ">
+      <div className="flex flex-col ml-[16px]  w-fit h-fit">
+        <div className="flex justify-between items-center w-full h-fit  ">
           <p className="text-[24px] text-[#FD543F]">{foodname} </p>
           <p className="text-[18px] text-[#09090B]">${price}</p>
         </div>
-        <p className="text-[14px] text-[#09090B] w-[365px] h-fit">{content}</p>
+        <p className="text-[30px] text-black w-[365px] h-[30px]">{content}</p>
       </div>
     </div>
   );
