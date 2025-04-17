@@ -18,13 +18,14 @@ const FoodGenre = () => {
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}food`
     );
     setFoods(res.data.Foods);
+    console.log(foods);
   };
   useEffect(() => {
     fetchFoods();
   }, []);
-  console.log(foods, "foods");
-  const IsClicked = () => {
-    setIstrue(!istrue);
+
+  const handleClick = () => {
+    return console.log("heloo");
   };
   return (
     <div className="flex w-full h-full bg-neutral-700">
@@ -34,24 +35,20 @@ const FoodGenre = () => {
             <Dialog key={index}>
               <DialogTrigger>
                 <Card
+                  onclick={handleClick}
                   foodname={value.foodname}
                   content={value.context}
                   image={value.image}
                   price={value.price}
                 />
               </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle></DialogTitle>
-                  <DialogDescription>
-                    <FoodDetail
-                      foodname={value.foodname}
-                      content={value.context}
-                      image={value.image}
-                      price={value.price}
-                    />
-                  </DialogDescription>
-                </DialogHeader>
+              <DialogContent className="[&>button]:hidden max-w-[874px]!">
+                <FoodDetail
+                  foodname={value.foodname}
+                  content={value.context}
+                  image={value.image}
+                  price={value.price}
+                />
               </DialogContent>
             </Dialog>
           );

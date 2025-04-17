@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose, { Mongoose, Schema } from "mongoose";
 
 const foodSchema = new mongoose.Schema({
   foodname: {
@@ -24,6 +24,10 @@ const foodSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
+  },
+  catefory: {
+    type: Schema.Types.ObjectId,
+    ref: "category",
   },
 });
 
