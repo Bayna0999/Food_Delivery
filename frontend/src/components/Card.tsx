@@ -14,7 +14,7 @@ const Card = ({ content, image, foodname, price, onclick }: cardProps) => {
         <img src={image} className="flex w-full h-full rounded-2xl" />
         <button
           onClick={onclick}
-          className="size-[44px] rounded-full flex justify-center items-center absolute bg-white bottom-3.5 right-3.5"
+          className="size-[44px] rounded-full flex justify-center items-center absolute bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
         >
           <Plus />
         </button>

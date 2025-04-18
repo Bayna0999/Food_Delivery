@@ -23,9 +23,29 @@ const FoodGenre = () => {
   useEffect(() => {
     fetchFoods();
   }, []);
+  const [food, setFood] = useState({});
+  const [foodIndex, setFoodIndex] = useState(-1);
+  const createFoods = async () => {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}food`,
+      {
+        userId: "id",
+        totalPrice: 20000,
+        foodOrderItem: [
+          {
+            quantity: 2,
+            food: "fasdfasdf",
+          },
+        ],
+      }
+    );
+    setFoods(res.data.Foods);
+    console.log(foods);
+  };
 
-  const handleClick = () => {
-    return console.log("heloo");
+  const handleClick = (value: any, index: number) => {
+    setFood(value);
+    setFoodIndex(index);
   };
   return (
     <div className="flex w-full h-full bg-neutral-700">
@@ -35,7 +55,9 @@ const FoodGenre = () => {
             <Dialog key={index}>
               <DialogTrigger>
                 <Card
-                  onclick={handleClick}
+                  onclick={() => {
+                    handleClick(value, index);
+                  }}
                   foodname={value.foodname}
                   content={value.context}
                   image={value.image}

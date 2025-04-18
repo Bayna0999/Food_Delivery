@@ -25,7 +25,7 @@ const foodSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  catefory: {
+  category: {
     type: Schema.Types.ObjectId,
     ref: "category",
   },

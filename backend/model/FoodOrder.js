@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import { mongoose, Schema } from "mongoose";
 
-export const FoodOrderSchema = new mongoose.Schema({
+const FoodOrderSchema = new mongoose.Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "user",
@@ -18,3 +18,5 @@ export const FoodOrderSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+export const FoodOrderModel = mongoose.model("FoodOrder", FoodOrderSchema);
