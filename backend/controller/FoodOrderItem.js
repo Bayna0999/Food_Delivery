@@ -1,11 +1,8 @@
 import { FoodOrderItemModel } from "../model/FoodOrderItem.js";
 
 export const createFoodOrderItem = async (req, res) => {
-  const { quantity } = req.body;
   try {
-    const orderItem = await FoodOrderItemModel.create({
-      quantity: quantity,
-    });
+    const orderItem = await FoodOrderItemModel.create(req.body);
     res
       .status(200)
       .send({
