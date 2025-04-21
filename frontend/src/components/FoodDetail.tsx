@@ -3,20 +3,25 @@ import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import { Minus } from "lucide-react";
 import { X } from "lucide-react";
+import { DialogTitle } from "./ui/dialog";
 type FoodProps = {
   image: string;
   foodname: string;
   content: string;
   price: number;
+  orderCount: number;
+  HandlePlus: () => void;
+  HandleMinus: () => void;
 };
-const FoodDetail = ({ image, foodname, content, price }: FoodProps) => {
-  const [orderCount, setOrderCount] = useState(1);
-  const HandlePlus = () => {
-    setOrderCount(orderCount + 1);
-  };
-  const HandleMinus = () => {
-    setOrderCount(orderCount - 1);
-  };
+const FoodDetail = ({
+  image,
+  foodname,
+  content,
+  price,
+  orderCount,
+  HandlePlus,
+  HandleMinus,
+}: FoodProps) => {
   return (
     <div className="flex w-[826px] h-[412px] rounded-2xl bg-white">
       <div className="flex gap-[24px] w-auto mx-[20px] my-[20px] ">
@@ -31,7 +36,9 @@ const FoodDetail = ({ image, foodname, content, price }: FoodProps) => {
               </button>
             </div>
             <div className="flex flex-col w-full">
-              <p className="text-[30px] text-[#FD543F] w-full">{foodname} </p>
+              <DialogTitle className="text-[30px] text-[#FD543F] w-full">
+                {foodname}
+              </DialogTitle>
               <p className="text-[16px] text-[#09090B] w-full h-fit">
                 {content}
               </p>
@@ -46,17 +53,17 @@ const FoodDetail = ({ image, foodname, content, price }: FoodProps) => {
               </div>
               <div className="flex gap-2.5 justify-center items-center">
                 <div
-                  onClick={HandlePlus}
-                  className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]"
-                >
-                  <Plus />
-                </div>
-                <p className="text-[18px]">{orderCount}</p>
-                <div
                   onClick={HandleMinus}
                   className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]"
                 >
                   <Minus />
+                </div>
+                <p className="text-[18px]">{orderCount}</p>
+                <div
+                  onClick={HandlePlus}
+                  className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]"
+                >
+                  <Plus />
                 </div>
               </div>
             </div>

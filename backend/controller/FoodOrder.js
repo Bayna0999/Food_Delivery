@@ -2,9 +2,15 @@ import mongoose from "mongoose";
 import { FoodOrderModel } from "../model/FoodOrder.js";
 
 export const createFoodOrder = async (req, res) => {
-  const { totalprice, user } = req.body;
   try {
-    const foodOrder = new mongoose.create(req.body);
+    const foodOrder = await FoodOrderModel.create(req.body);
+    res
+      .status(200)
+      .send({
+        success: true,
+        foodOrder: foodOrder,
+      })
+      .end();
   } catch (error) {
     console.error(error, "err");
     res
@@ -18,11 +24,14 @@ export const createFoodOrder = async (req, res) => {
 };
 export const getFoodOrder = async (_, res) => {
   try {
-    const foodOrder = FoodOrderModel.find();
-    res.status(200).send({
-      success: true,
-      foodOrder: foodOrder,
-    });
+    const foodOrder = await FoodOrderModel.find();
+    res
+      .status(200)
+      .send({
+        success: true,
+        foodOrder: foodOrder,
+      })
+      .end();
   } catch (error) {
     console.error(error, "err");
     res
