@@ -4,8 +4,8 @@ import { userRouter } from "./routes/user.js";
 import cors from "cors";
 import { foodRouter } from "./routes/food.js";
 import { categoryRouter } from "./routes/categories.js";
-import { OrderItemrouter } from "./routes/FoodOrderItem.js";
 import { foodOrderRouter } from "./routes/FoodOrder.js";
+import { userOrderRouter } from "./routes/userOrder.js";
 
 const port = 8000;
 const app = express();
@@ -15,8 +15,8 @@ app.use(json());
 app.use("/user", userRouter);
 app.use("/food", foodRouter);
 app.use("/category", categoryRouter);
-app.use("/foodOrderItem", OrderItemrouter);
 app.use("/foodOrder", foodOrderRouter);
+app.use("/UserOrder", userOrderRouter);
 app.get("/", (req, res) => {
   res.send("hello world");
 });

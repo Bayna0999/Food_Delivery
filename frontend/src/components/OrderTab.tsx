@@ -2,18 +2,7 @@
 import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import OrderDetail from "./OrderDetail";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupAction,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
+
 import { Plus } from "lucide-react";
 const OrderTab = () => {
   const [number, setNumber] = useState(0);

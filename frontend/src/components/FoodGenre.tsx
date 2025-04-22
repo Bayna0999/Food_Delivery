@@ -12,8 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import FoodDetail from "./FoodDetail";
 import { Plus } from "lucide-react";
-import { toast } from "sonner";
-import { Button } from "./ui/button";
 
 const FoodGenre = () => {
   const [orderCount, setOrderCount] = useState(1);
@@ -38,10 +36,8 @@ const FoodGenre = () => {
     const res = axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}FoodOrderItem`,
       {
-        userId: "6805bb810bb5963fac417282",
-        totalprice: order.price + 1,
-        quantity: 1,
-        foodOrderItem: [order],
+        userId: order,
+        quantity: orderCount,
       }
     );
   };
@@ -51,6 +47,13 @@ const FoodGenre = () => {
   const handleClick = (value: any, index: number) => {
     setFood(value);
   };
+  const LocalStorage = require("node-localstorage").LocalStorage;
+  const localStorage = new LocalStorage("./scratch");
+  localStorage.setItem("key", "value");
+  localStorage.setItem("user", JSON.stringify({ name: "John", age: 30 }));
+  const storedValue = localStorage.getItem("key");
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  console.log(storedUser, storedValue);
 
   return (
     <div className="flex w-full h-full bg-neutral-700">
@@ -82,7 +85,7 @@ const FoodGenre = () => {
               <div
                 onClick={() => {
                   handleClick(value, index);
-                  createOrder(value);
+                  createOrder(value._id);
                 }}
                 className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-50 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
               >

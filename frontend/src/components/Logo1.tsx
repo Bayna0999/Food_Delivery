@@ -9,7 +9,7 @@ const Logo1 = () => {
           <p className="text-white text-[20px]">Nom</p>
           <p className="text-red-800 text-[20px]">Nom</p>
         </div>
-        <p className="text-[#F4F4F5] text-[12px]">Swift delivery</p>
+        <p className="text-[#71717A] text-[12px]">Swift delivery</p>
       </div>
     </div>
   );
