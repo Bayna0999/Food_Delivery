@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import FoodDetail from "./FoodDetail";
 import { Plus } from "lucide-react";
+import Category from "./Category";
 
 const FoodGenre = () => {
   const [orderCount, setOrderCount] = useState(1);
@@ -47,53 +48,51 @@ const FoodGenre = () => {
   const handleClick = (value: any, index: number) => {
     setFood(value);
   };
-  const LocalStorage = require("node-localstorage").LocalStorage;
-  const localStorage = new LocalStorage("./scratch");
-  localStorage.setItem("key", "value");
-  localStorage.setItem("user", JSON.stringify({ name: "John", age: 30 }));
-  const storedValue = localStorage.getItem("key");
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  console.log(storedUser, storedValue);
 
   return (
-    <div className="flex w-full h-full bg-neutral-700">
-      <div className="flex flex-wrap w-full h-fit mx-[20px] my-[20px] rounded-3xl gap-[36px] ">
-        {foods?.map((value: any, index: number) => {
-          return (
-            <div key={index} className="relative">
-              <Dialog key={index}>
-                <DialogTrigger>
-                  <Card
-                    foodname={value.foodname}
-                    content={value.context}
-                    image={value.image}
-                    price={value.price}
-                  />
-                </DialogTrigger>
-                <DialogContent className="[&>button]:hidden max-w-[874px]!">
-                  <FoodDetail
-                    HandlePlus={HandlePlus}
-                    HandleMinus={HandleMinus}
-                    orderCount={orderCount}
-                    foodname={value.foodname}
-                    content={value.context}
-                    image={value.image}
-                    price={value.price}
-                  />
-                </DialogContent>
-              </Dialog>
-              <div
-                onClick={() => {
-                  handleClick(value, index);
-                  createOrder(value._id);
-                }}
-                className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-50 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
-              >
-                <Plus />
+    <div className="flex flex-col w-full h-full bg-neutral-700">
+      <div className="flex w-screen h-[136px]">
+        <Category />
+      </div>
+      <div className="flex flex-col w-full h-full bg-neutral-700">
+        <div className="flex flex-wrap w-full h-fit mx-[20px] my-[20px] rounded-3xl gap-[36px] ">
+          {foods?.map((value: any, index: number) => {
+            return (
+              <div key={index} className="relative">
+                <Dialog key={index}>
+                  <DialogTrigger>
+                    <Card
+                      foodname={value.foodname}
+                      content={value.context}
+                      image={value.image}
+                      price={value.price}
+                    />
+                  </DialogTrigger>
+                  <DialogContent className="[&>button]:hidden max-w-[874px]!">
+                    <FoodDetail
+                      HandlePlus={HandlePlus}
+                      HandleMinus={HandleMinus}
+                      orderCount={orderCount}
+                      foodname={value.foodname}
+                      content={value.context}
+                      image={value.image}
+                      price={value.price}
+                    />
+                  </DialogContent>
+                </Dialog>
+                <div
+                  onClick={() => {
+                    handleClick(value, index);
+                    createOrder(value._id);
+                  }}
+                  className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-50 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
+                >
+                  <Plus />
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

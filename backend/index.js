@@ -6,6 +6,7 @@ import { foodRouter } from "./routes/food.js";
 import { categoryRouter } from "./routes/categories.js";
 import { foodOrderRouter } from "./routes/FoodOrder.js";
 import { userOrderRouter } from "./routes/userOrder.js";
+import { authRouter } from "./routes/auth.js";
 
 const port = 8000;
 const app = express();
@@ -17,6 +18,7 @@ app.use("/food", foodRouter);
 app.use("/category", categoryRouter);
 app.use("/foodOrder", foodOrderRouter);
 app.use("/UserOrder", userOrderRouter);
+app.use("/login", authRouter);
 app.get("/", (req, res) => {
   res.send("hello world");
 });

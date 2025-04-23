@@ -1,11 +1,23 @@
 import { Usermodel } from "../model/user.js";
-
+import bcrypt from "bcrypt";
 export const createUser = async (req, res) => {
   const { email, password, phoneNumber, address, isVerified } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(hashedPassword, "password");
+
   try {
+    const oldUser = await Usermodel.find({ email: email });
+    console.log(oldUser);
+
+    if (oldUser.length > 0) {
+      return res.status(405).send({
+        success: false,
+        message: "user already created",
+      });
+    }
     const user = await Usermodel.create({
       email: email,
-      password: password,
+      password: hashedPassword,
       phoneNumber: phoneNumber,
       address: address,
       isVerified: isVerified,
@@ -28,7 +40,7 @@ export const createUser = async (req, res) => {
 
 export const getUsers = async (_, res) => {
   try {
-    const users = await Usermodel.find();
+    const users = await Usermodel.find().select("-password");
     return res
       .status(200)
       .send({
