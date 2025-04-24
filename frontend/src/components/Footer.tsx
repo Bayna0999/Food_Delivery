@@ -1,7 +1,7 @@
 import React from "react";
 import { Facebook } from "lucide-react";
 import { Instagram } from "lucide-react";
-import Logo1 from "./Logo1";
+import Logo1 from "./logo/Logo1";
 const Footer = () => {
   return (
     <div className="flex w-screen h-[755px] bg-black flex-col">

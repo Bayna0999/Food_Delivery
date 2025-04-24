@@ -23,11 +23,9 @@ export const createFood = async (req, res) => {
 };
 
 export const getFoodById = async (req, res) => {
-  const { category } = req.body;
+  const { id } = req.params;
   try {
-    const Foods = await foodModel
-      .find({ category: category })
-      .populate("category");
+    const Foods = await foodModel.findById(id).populate("category");
     return res
       .status(200)
       .send({
@@ -46,14 +44,38 @@ export const getFoodById = async (req, res) => {
       .end();
   }
 };
+
 export const getFoods = async (req, res) => {
   try {
-    const Foods = await foodModel.find();
+    const Foods = await foodModel.find().populate("category");
     return res
       .status(200)
       .send({
         success: true,
         Foods: Foods,
+      })
+      .end();
+  } catch (error) {
+    console.error(error, "err");
+    res
+      .status(400)
+      .send({
+        success: false,
+        message: error,
+      })
+      .end();
+  }
+};
+export const getFoodsByCategoryId = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const Foods = await foodModel.find().populate("category");
+    const filtered = Foods.filter((val) => val.category.id == id);
+    return res
+      .status(200)
+      .send({
+        success: true,
+        Foods: filtered,
       })
       .end();
   } catch (error) {

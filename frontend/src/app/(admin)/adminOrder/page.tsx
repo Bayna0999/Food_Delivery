@@ -4,8 +4,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="flex ">
-      <Navigation />
+    <div className="flex w-auto h-auto ml-[20px] mr-[40px] my-[80px]">
       <DataTableDemo />
     </div>
   );

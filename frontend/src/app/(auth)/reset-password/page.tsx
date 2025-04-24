@@ -1,4 +1,4 @@
-import Card from "@/components/Card";
+import Card from "@/components/FoodGenre/Card";
 import React from "react";
 
 const Reset_pass = () => {

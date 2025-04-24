@@ -33,3 +33,18 @@ export const getCategory = async (req, res) => {
     });
   }
 };
+// export const getCategoryById = async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const categories = await CategoryModel.findById();
+//     return res.status(200).send({
+//       success: true,
+//       categories: categories,
+//     });
+//   } catch (error) {
+//     console.error({
+//       success: false,
+//       message: error,
+//     });
+//   }
+// };

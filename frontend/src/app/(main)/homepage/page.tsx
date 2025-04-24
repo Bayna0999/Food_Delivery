@@ -1,12 +1,15 @@
 "use client";
-import Card from "@/components/Card";
-import FoodCard from "@/components/FoodCard";
-import FoodGenre from "@/components/FoodGenre";
-import axios from "axios";
+import FoodGenre from "@/components/FoodGenre/FoodGenre";
+import MainPageImage from "@/components/MainPageImage";
 import React, { useEffect, useState } from "react";
 
 const homepage = () => {
-  return <FoodGenre />;
+  return (
+    <div>
+      <MainPageImage />
+      <FoodGenre />
+    </div>
+  );
 };
 
 export default homepage;

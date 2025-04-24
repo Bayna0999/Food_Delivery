@@ -1,6 +1,6 @@
 "use client";
-import Card from "@/components/Card";
-import FoodDetail from "@/components/FoodDetail";
+import Card from "@/components/FoodGenre/Card";
+import FoodDetail from "@/components/FoodGenre/FoodDetail";
 import OrderDetail from "@/components/OrderDetail";
 import OrderTab from "@/components/OrderTab";
 import { Car } from "lucide-react";
