@@ -61,6 +61,7 @@ const Header = () => {
               <p className="text-[12px] text-[#71717A] ">Add Location</p>
               <ChevronRight />
             </div>
+
             <Sheet>
               <SheetTrigger>
                 {" "}
@@ -77,17 +78,24 @@ const Header = () => {
                 </div>
               </SheetTrigger>
               <SheetContent>
-                <div>ihadhiafhiaha</div>
+                <div className="flex w-auto gap-[10px] items-center mx-[32px] mt-[32px] ">
+                  <ShoppingCart className="size-[24px] text-white" />
+                  <p className="text-[20px] text-white">Order detail</p>
+                </div>
                 <Tabs defaultValue="account" className="w-[471px] h-fit">
-                  <TabsList>
-                    <TabsTrigger value="Cart">Cart</TabsTrigger>
-                    <TabsTrigger value="Order">Order</TabsTrigger>
+                  <TabsList className="w-auto mx-[32px] rounded-3xl">
+                    <TabsTrigger className="rounded-3xl" value="Cart">
+                      Cart
+                    </TabsTrigger>
+                    <TabsTrigger className="rounded-3xl" value="Order">
+                      Order
+                    </TabsTrigger>
 
                     <button className="flex justify-center items-center size-[36px] bg-white rounded-full">
                       <X />
                     </button>
                   </TabsList>
-                  <TabsContent value="Cart">
+                  <TabsContent className="flex mx-[24px] w-auto" value="Cart">
                     <OrderDetail
                       foodname="buuz"
                       image="https://blog.russianfoods.com/wp-content/uploads/2011/11/%D0%B3%D1%83%D0%BB%D1%8F%D1%88-%D1%81-%D1%8F%D0%B1%D0%BB-1.jpg"
@@ -112,7 +120,6 @@ const Header = () => {
                 </Tabs>
               </SheetContent>
             </Sheet>
-
             <div className="size-[36px] bg-red-800 flex justify-center items-center rounded-full">
               <User className="size-[16px]" />
             </div>

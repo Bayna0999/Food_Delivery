@@ -20,7 +20,7 @@ const OrderDetail = ({
   HandleMinus,
 }: OrderDetailProps) => {
   return (
-    <div className="flex flex-col w-fit h-fit ">
+    <div className="flex flex-col w-auto h-auto mx-[16px] my-[16px]">
       <div className="flex w-[471px] h-[120px] rounded-2xl bg-white my-[20px] ">
         <div className="flex gap-[24px] w-auto   ">
           <div className="flex rounded-2xl size-[120px]">
@@ -28,12 +28,18 @@ const OrderDetail = ({
           </div>
           <div className="flex flex-col justify-between w-[305px] ">
             <div className="flex justify-between  w-full h-fit ">
-              <div className="flex flex-col w-[259px]">
-                <p className="text-[16px] text-[#FD543F] font-bold">
-                  {foodname}
-                </p>
-                <p className="text-[12px] text-[#09090B]  h-fit">{content}</p>
+              <div className="flex">
+                <div className="flex flex-col w-[259px]">
+                  <p className="text-[16px] text-[#FD543F] font-bold">
+                    {foodname}
+                  </p>
+                  <p className="text-[12px] text-[#09090B]  h-fit">{content}</p>
+                </div>
+                <div className="border-[1px] rounded-full size-[36px] border-red-500">
+                  <p className="text-red-500">X</p>
+                </div>
               </div>
+
               <div className="flex w-fit h-full justify-center items-center  ">
                 <button className="flex justify-center items-center size-[36px] bg-white rounded-full border-[1px] border-[#EF4444] ">
                   <X className="fill-red-600" />
