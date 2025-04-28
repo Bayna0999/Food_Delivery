@@ -13,4 +13,4 @@ foodRouter
   .get("/", getFoods)
   .delete("/", DeleteFood)
   .get("/foodId", getFoodById)
-  .get("/category/:id", getFoodsByCategoryId);
+  .get("/category", getFoodsByCategoryId);
