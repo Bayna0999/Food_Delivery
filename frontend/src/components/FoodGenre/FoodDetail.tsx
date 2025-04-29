@@ -13,6 +13,7 @@ type FoodProps = {
   orderCount: number;
   HandlePlus: () => void;
   HandleMinus: () => void;
+  onClick: () => void;
 };
 const FoodDetail = ({
   image,
@@ -22,6 +23,7 @@ const FoodDetail = ({
   orderCount,
   HandlePlus,
   HandleMinus,
+  onClick,
 }: FoodProps) => {
   return (
     <div className="flex w-[826px] h-[412px] rounded-2xl bg-white">
@@ -32,10 +34,8 @@ const FoodDetail = ({
         <div className="flex flex-col justify-between w-[48%]">
           <div className="flex flex-col w-full h-fit">
             <div className="flex w-full h-fit justify-end">
-              <DialogClose>
-                <button className="flex justify-center items-center size-[36px] bg-white rounded-full">
-                  <X />
-                </button>
+              <DialogClose className="flex justify-center items-center size-[36px] bg-white rounded-full">
+                <X />
               </DialogClose>
             </div>
             <div className="flex flex-col w-full">
@@ -70,7 +70,10 @@ const FoodDetail = ({
                 </div>
               </div>
             </div>
-            <button className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white">
+            <button
+              onClick={onClick}
+              className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white"
+            >
               Add To Card
             </button>
           </div>

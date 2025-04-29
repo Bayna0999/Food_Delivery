@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DiVim } from "react-icons/di";
 import { ChevronRight, Divide, Hand } from "lucide-react";
 import { MapPin } from "lucide-react";
@@ -19,7 +19,9 @@ import {
 } from "@/components/ui/sheet";
 
 import { Plus, X } from "lucide-react";
+import { FoodType } from "@/lib/utils";
 const Header = () => {
+  // const [card, setCard] = useState([]);
   const istrue = false;
   const [notifCount, SetNotifCount] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
@@ -30,18 +32,15 @@ const Header = () => {
   const handleOnClick = () => {
     setNumber(number + 1);
   };
-  const localstorage = () => {
-    return localStorage.setItem("hello", "zail");
-  };
-  const local = () => {
-    return localStorage.getItem("zail");
-  };
-  localstorage();
-  const z = local();
-  console.log(z);
 
+  const foods = JSON.parse(localStorage.getItem("foods")!);
+  console.log(foods);
+
+  const handleQuantity = () => {
+    return;
+  };
   return (
-    <div className=" flex w-screen h-[68px] bg-black justify-center items-center">
+    <div className=" flex w-screen  h-[68px] bg-black justify-center items-center fixed z-2">
       <div className="flex w-full h-full justify-between pl-[88px] pr-[88px]">
         <Logo />
         {istrue ? (
@@ -77,34 +76,40 @@ const Header = () => {
                   )}
                 </div>
               </SheetTrigger>
-              <SheetContent>
+              <SheetContent className="min-w-[536px] ">
                 <div className="flex w-auto gap-[10px] items-center mx-[32px] mt-[32px] ">
                   <ShoppingCart className="size-[24px] text-white" />
                   <p className="text-[20px] text-white">Order detail</p>
                 </div>
-                <Tabs defaultValue="account" className="w-[471px] h-fit">
-                  <TabsList className="w-auto mx-[32px] rounded-3xl">
+                <Tabs defaultValue="account" className="w-full h-[540px] flex">
+                  <TabsList className="w-auto mx-[24px] rounded-3xl">
                     <TabsTrigger className="rounded-3xl" value="Cart">
                       Cart
                     </TabsTrigger>
                     <TabsTrigger className="rounded-3xl" value="Order">
                       Order
                     </TabsTrigger>
-
-                    <button className="flex justify-center items-center size-[36px] bg-white rounded-full">
-                      <X />
-                    </button>
                   </TabsList>
-                  <TabsContent className="flex mx-[24px] w-auto" value="Cart">
-                    <OrderDetail
-                      foodname="buuz"
-                      image="https://blog.russianfoods.com/wp-content/uploads/2011/11/%D0%B3%D1%83%D0%BB%D1%8F%D1%88-%D1%81-%D1%8F%D0%B1%D0%BB-1.jpg"
-                      content="meat"
-                      HandleMinus={handleOnClick}
-                      HandlePlus={handleOnClick}
-                      orderCount={1}
-                      price={12.99}
-                    />
+
+                  <TabsContent
+                    className="flex flex-col mx-[24px] h-[540px] bg-white rounded-3xl  overflow-scroll"
+                    value="Cart"
+                  >
+                    {foods &&
+                      foods.map((food: FoodType, index: number) => {
+                        return (
+                          <OrderDetail
+                            key={index}
+                            foodname={food.foodname}
+                            image={food.image}
+                            content={food.context}
+                            HandleMinus={HandleOnClick}
+                            HandlePlus={handleOnClick}
+                            orderCount={food.quantity}
+                            price={food.price}
+                          />
+                        );
+                      })}
                   </TabsContent>
                   <TabsContent value="Order">
                     <OrderDetail
@@ -118,6 +123,7 @@ const Header = () => {
                     />
                   </TabsContent>
                 </Tabs>
+                <Tabs className="w-auto mx-[24px] bg-white h-[270px] rounded-3xl my-[20px]"></Tabs>
               </SheetContent>
             </Sheet>
             <div className="size-[36px] bg-red-800 flex justify-center items-center rounded-full">

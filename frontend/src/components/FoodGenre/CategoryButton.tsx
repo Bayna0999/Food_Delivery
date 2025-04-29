@@ -1,3 +1,6 @@
+"use client";
+import { useParams } from "next/navigation";
+import { Router } from "next/router";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 const CategoryButton = ({
@@ -15,6 +18,7 @@ const CategoryButton = ({
   const HandleOnClick = () => {
     setSelectedCategory(categoryID);
   };
+
   return (
     <button
       onClick={HandleOnClick}

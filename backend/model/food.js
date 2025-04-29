@@ -21,6 +21,10 @@ const foodSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  quantity: {
+    type: Number,
+    default: 1,
+  },
   updatedAt: {
     type: Date,
     default: Date.now,

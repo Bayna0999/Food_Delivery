@@ -29,28 +29,17 @@ const FoodGenre = () => {
   useEffect(() => {
     fetchCategoreis();
   }, []);
-
+  console.log(category, "category");
   return (
     <div className="flex flex-col w-full h-full bg-neutral-700">
       <div className="flex w-screen h-[136px]">
         <Category />
       </div>
-      {category.map((el: any, index: number) => {
-        return (
-          <div
-            key={index}
-            className="flex flex-col w-auto h-full mx-[80px] bg-neutral-700"
-          >
-            <p className="text-[30px] text-white">{el.name}</p>
-            <FoodMenu
-              id={el._id}
-              HandleMinus={HandleMinus}
-              HandlePlus={HandlePlus}
-              orderCount={orderCount}
-            />
-          </div>
-        );
-      })}
+      <FoodMenu
+        HandleMinus={HandleMinus}
+        HandlePlus={HandlePlus}
+        orderCount={orderCount}
+      />
     </div>
   );
 };
