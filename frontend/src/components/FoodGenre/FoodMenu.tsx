@@ -18,7 +18,7 @@ type FoodMenuProps = {
   HandleMinus: () => void;
   HandlePlus: () => void;
   orderCount: number;
-  id?: string;
+  id: string;
 };
 const FoodMenu = ({
   id,
@@ -27,26 +27,64 @@ const FoodMenu = ({
   orderCount,
 }: FoodMenuProps) => {
   const [foods, setFoods] = useState([]);
+  const [orders, setOrders] = useState([]);
   const fetchFoods = async () => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}food/category`
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}food/category?categoryId=${id}`
     );
     setFoods(res.data.Foods);
+    console.log(res.data, "res");
   };
+  console.log(foods, "foods");
   useEffect(() => {
     fetchFoods();
-  }, []);
-  const [food, setFood] = useState(null);
-  const handleClick = (value: any, index: number) => {
-    setFood(JSON.parse(localStorage.getItem("foods")!));
-
-    food
-      ? localStorage.setItem("foods", JSON.stringify([...food, value]))
-      : localStorage.setItem("foods", JSON.stringify([value]));
-
-    // setFood(value);
+    fetchOrders();
+  }, [id]);
+  const fetchOrders = async () => {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}foodOrder`
+    );
+    setOrders(res.data.foodOrder);
   };
-  console.log(food, "food");
+
+  const [food, setFood] = useState([]);
+
+  const handleClick = async (value: {}) => {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "http://localhost:8000/foodOrder",
+      {
+        totalPrice: "20000",
+        FoodOrderItems: [
+          {
+            food: value._id,
+            quantity: 2,
+          },
+        ],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    alert(response.data.success);
+    const card = JSON.parse(localStorage.getItem("foods") || "[]");
+    const existingIndex = card.findIndex((o: any) => o._id === value._id);
+    let updatedOrders;
+    if (existingIndex !== -1) {
+      card[existingIndex].quantity += orderCount;
+      updatedOrders = [...card];
+    } else {
+      value.quantity = orderCount;
+      updatedOrders = [...card, value];
+    }
+    localStorage.setItem("foods", JSON.stringify(updatedOrders));
+    window.location.reload();
+    console.log(value, "value");
+  };
+
   return (
     <div className="flex  flex-col  w-full h-fit mx-[20px] my-[20px] rounded-3xl gap-[36px] ">
       {foods?.map((value: any, index: number) => {
@@ -76,14 +114,14 @@ const FoodMenu = ({
                           image={food.image}
                           price={food.price}
                           onClick={() => {
-                            handleClick(food, index);
+                            handleClick(food);
                           }}
                         />
                       </DialogContent>
                     </Dialog>
                     <div
                       onClick={() => {
-                        handleClick(food, index);
+                        handleClick(food);
                       }}
                       className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-1 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
                     >

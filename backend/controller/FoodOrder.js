@@ -24,7 +24,8 @@ export const createFoodOrder = async (req, res) => {
 };
 export const getFoodOrder = async (_, res) => {
   try {
-    const foodOrder = await FoodOrderModel.find();
+    const foodOrder = await FoodOrderModel.find({}).populate("user");
+    // .populate("FoodOrderItems.food");
     res
       .status(200)
       .send({

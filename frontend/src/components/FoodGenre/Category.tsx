@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import CategoryButton from "./CategoryButton";
 
-const Category = () => {
+const Category = ({ onclick }: any) => {
   const [category, setCategory] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const fetchCategoreis = async () => {
@@ -21,6 +21,11 @@ const Category = () => {
   useEffect(() => {
     fetchCategoreis();
   }, []);
+  // const HandleOnClick = (id: string) => {
+  //   setSelectedCategory(id);
+  // };
+  // console.log(selectedCategory);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <p className="text-[30px] text-white">Categories</p>
@@ -36,6 +41,9 @@ const Category = () => {
                     categoryID={value._id}
                     setSelectedCategory={setSelectedCategory}
                     selectedCategory={selectedCategory}
+                    onclick={() => {
+                      onclick(value._id);
+                    }}
                   />
                 );
               })}

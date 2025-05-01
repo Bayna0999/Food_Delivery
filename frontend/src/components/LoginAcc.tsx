@@ -1,7 +1,7 @@
-import React from 'react';
-import { IoChevronBackOutline } from 'react-icons/io5';
+import React from "react";
+import { IoChevronBackOutline } from "react-icons/io5";
 
-const LoginAcc = () => {
+const LoginAcc = ({ onclick, onchange }) => {
   return (
     <div className="w-[416px] h-[288px] left-[48px] top-[226px] bottom-[390px] flex flex-col gap-6">
       <div className="size-[36px] border-[1px] border-[#E4E4E7] flex justify-center items-center rounded-md">
@@ -14,11 +14,15 @@ const LoginAcc = () => {
         </p>
       </div>
       <input
+        name="email"
+        onChange={onchange}
         type="text"
         placeholder="Enter your email address"
         className="w-full h-[36px] border-[1px] border-[#71717A] rounded-md"
       />
       <input
+        name="password"
+        onChange={onchange}
         type="text"
         placeholder="Password"
         className="w-full h-[36px] border-[1px] border-[#71717A] rounded-md"
@@ -26,7 +30,10 @@ const LoginAcc = () => {
       <p className="text-[#18181B] text-[14px] underline-offset-auto ">
         Forgot password ?
       </p>
-      <button className="w-full bg-[#71717A] rounded-md text-white ">
+      <button
+        onClick={onclick}
+        className="w-full bg-[#71717A] rounded-md text-white "
+      >
         Let's Go
       </button>
       <div className="flex gap-2">

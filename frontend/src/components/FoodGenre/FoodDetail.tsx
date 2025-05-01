@@ -47,7 +47,6 @@ const FoodDetail = ({
               </p>
             </div>
           </div>
-
           <div className="flex flex-col justify-between w-full gap-[24px]">
             <div className="flex justify-between">
               <div className="flex flex-col">
@@ -70,12 +69,15 @@ const FoodDetail = ({
                 </div>
               </div>
             </div>
-            <button
-              onClick={onClick}
-              className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white"
-            >
-              Add To Card
-            </button>
+            <DialogClose>
+              {" "}
+              <button
+                onClick={onClick}
+                className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white"
+              >
+                Add To Card
+              </button>
+            </DialogClose>
           </div>
         </div>
       </div>

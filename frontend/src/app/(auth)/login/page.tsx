@@ -1,15 +1,26 @@
 "use client";
 import LoginAcc from "@/components/LoginAcc";
 import axios from "axios";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const LoginPage = () => {
+  const [input, setInput] = useState({});
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInput((val) => ({
+      ...val,
+      [name]: value,
+    }));
+  };
+
   const handleOnClick = async () => {
-    await axios.post("http://localhost:8000/login");
+    const response = await axios.post("http://localhost:8000/login", input);
+    localStorage.setItem("token", response.data.token);
   };
   return (
     <div className="justify-center items-center">
-      <LoginAcc />
+      <LoginAcc onchange={handleOnChange} onclick={handleOnClick} />
     </div>
   );
 };

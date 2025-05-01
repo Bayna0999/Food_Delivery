@@ -8,20 +8,19 @@ const CategoryButton = ({
   categoryID,
   setSelectedCategory,
   selectedCategory,
+  onclick,
 }: {
   name: string;
   categoryID: string;
   setSelectedCategory: Dispatch<SetStateAction<string>>;
   selectedCategory: string;
+  onclick: any;
 }) => {
   const isSelected = categoryID === selectedCategory;
-  const HandleOnClick = () => {
-    setSelectedCategory(categoryID);
-  };
 
   return (
     <button
-      onClick={HandleOnClick}
+      onClick={onclick}
       className={` flex justify-center items-center rounded-4xl mr-[20px] w-[132px] h-[36px] ${
         isSelected ? "bg-red-500" : "bg-white"
       }`}

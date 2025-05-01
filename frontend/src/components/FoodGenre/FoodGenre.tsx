@@ -18,24 +18,27 @@ const FoodGenre = () => {
   const [istrue, setIstrue] = useState(false);
   const [foodIndex, setFoodIndex] = useState(-1);
   const [category, setCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState("");
   const fetchCategoreis = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}category`
     );
     setCategory(res.data.categories);
   };
-
+  const HandleOnClick = (id: string) => {
+    setSelectedCategory(id);
+  };
   useEffect(() => {
     fetchCategoreis();
   }, []);
-  console.log(category, "category");
+  console.log(selectedCategory, "category");
   return (
     <div className="flex flex-col w-full h-full bg-neutral-700">
       <div className="flex w-screen h-[136px]">
-        <Category />
+        <Category onclick={HandleOnClick} />
       </div>
       <FoodMenu
+        id={selectedCategory}
         HandleMinus={HandleMinus}
         HandlePlus={HandlePlus}
         orderCount={orderCount}
