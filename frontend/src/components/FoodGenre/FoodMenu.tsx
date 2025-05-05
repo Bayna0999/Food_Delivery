@@ -28,12 +28,12 @@ const FoodMenu = ({
 }: FoodMenuProps) => {
   const [foods, setFoods] = useState([]);
   const [orders, setOrders] = useState([]);
+
   const fetchFoods = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/food/category?categoryId=${id}`
     );
     setFoods(res.data.Foods);
-    console.log(res.data, "res");
   };
   console.log(foods, "foods");
   useEffect(() => {
@@ -50,26 +50,27 @@ const FoodMenu = ({
   const [food, setFood] = useState([]);
 
   const handleClick = async (value: { _id: string; quantity: number }) => {
-    const token = localStorage.getItem("token");
-    const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
-      {
-        totalPrice: "20000",
-        FoodOrderItems: [
-          {
-            food: value._id,
-            quantity: 2,
-          },
-        ],
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    // const token = localStorage.getItem("token");
+    // const response = await axios.post(
+    //   `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
+    //   {
+    //     totalPrice: "20000",
+    //     FoodOrderItems: [
+    //       {
+    //         food: value._id,
+    //         quantity: 2,
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
 
-    alert(response.data.success);
+    // alert(response.data.success);
+    localStorage.setItem("order", JSON.stringify(value));
     const card = JSON.parse(localStorage.getItem("foods") || "[]");
     const existingIndex = card.findIndex((o: any) => o._id === value._id);
     let updatedOrders;

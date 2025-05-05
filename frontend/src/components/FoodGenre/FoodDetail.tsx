@@ -71,12 +71,12 @@ const FoodDetail = ({
             </div>
             <DialogClose>
               {" "}
-              <button
+              <div
                 onClick={onClick}
                 className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white"
               >
                 Add To Card
-              </button>
+              </div>
             </DialogClose>
           </div>
         </div>

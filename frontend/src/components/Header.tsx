@@ -59,10 +59,32 @@ const Header = () => {
 
     return () => window.removeEventListener("storage", storedFoods);
   }, []);
-  console.log(foods, "jjjj");
 
-  const handleCheckOut = () => {
-    return;
+  const handleCheckOut = async () => {
+    const value = localStorage.getItem("order");
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
+      {
+        totalPrice: "20000",
+        FoodOrderItems: [
+          {
+            food: value._id,
+            quantity: value.quantity,
+          },
+        ],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    localStorage.removeItem("order");
+    localStorage.removeItem("foods");
+    alert(response.data.success);
+    window.location.reload();
   };
 
   return (
@@ -192,7 +214,10 @@ const Header = () => {
                       <p className="text-[16px] text-black">0.99$</p>
                     </div>
 
-                    <div className="flex w-[440px] h-[44px] rounded-full bg-red-500 items-center justify-center">
+                    <div
+                      onClick={handleCheckOut}
+                      className="flex w-[440px] h-[44px] rounded-full bg-red-500 items-center justify-center"
+                    >
                       <p className="text-[14px] text-white">checkout</p>
                     </div>
                   </div>
