@@ -2,10 +2,6 @@ import Card from "@/components/FoodGenre/Card";
 import React from "react";
 
 const Reset_pass = () => {
-  return (
-    <div>
-      <Card />
-    </div>
-  );
+  return <div></div>;
 };
 export default Reset_pass;
