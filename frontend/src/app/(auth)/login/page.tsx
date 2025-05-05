@@ -6,7 +6,7 @@ import React, { useRef, useState } from "react";
 const LoginPage = () => {
   const [input, setInput] = useState({});
 
-  const handleOnChange = (event: any) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInput((val) => ({
       ...val,
