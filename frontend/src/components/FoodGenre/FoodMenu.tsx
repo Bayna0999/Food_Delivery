@@ -52,7 +52,7 @@ const FoodMenu = ({
   const handleClick = async (value: {}) => {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "http://localhost:8000/foodOrder",
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}foodOrder`,
       {
         totalPrice: "20000",
         FoodOrderItems: [
