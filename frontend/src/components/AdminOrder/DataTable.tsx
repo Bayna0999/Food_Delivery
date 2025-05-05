@@ -45,7 +45,7 @@ export function DataTableDemo() {
 
   const fetchOrder = async () => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}foodOrder`
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`
     );
     console.log(res, "res");
     setData(res.data.foodOrder);

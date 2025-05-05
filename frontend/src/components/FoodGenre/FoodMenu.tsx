@@ -30,7 +30,7 @@ const FoodMenu = ({
   const [orders, setOrders] = useState([]);
   const fetchFoods = async () => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}food/category?categoryId=${id}`
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/food/category?categoryId=${id}`
     );
     setFoods(res.data.Foods);
     console.log(res.data, "res");
@@ -42,7 +42,7 @@ const FoodMenu = ({
   }, [id]);
   const fetchOrders = async () => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}foodOrder`
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`
     );
     setOrders(res.data.foodOrder);
   };
@@ -52,7 +52,7 @@ const FoodMenu = ({
   const handleClick = async (value: {}) => {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}foodOrder`,
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
       {
         totalPrice: "20000",
         FoodOrderItems: [

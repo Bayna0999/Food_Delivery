@@ -15,7 +15,10 @@ const LoginPage = () => {
   };
 
   const handleOnClick = async () => {
-    const response = await axios.post("http://localhost:8000/login", input);
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/login`,
+      input
+    );
     localStorage.setItem("token", response.data.token);
   };
   return (

@@ -14,7 +14,7 @@ const Category = ({ onclick }: any) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const fetchCategoreis = async () => {
     const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}category`
+      `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/category`
     );
     setCategory(res.data.categories);
   };
