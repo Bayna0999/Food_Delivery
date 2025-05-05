@@ -38,6 +38,7 @@ export type PaymentType = {
   status: "pending" | "processing" | "success" | "failed";
   food: string;
   FoodOrderItems: [FoodOrderItemsType];
+  createdAt: string;
 };
 
 export function DataTableDemo() {

@@ -49,9 +49,7 @@ const OrderList = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem
-          onClick={() => navigator.clipboard.writeText(payment.id)}
-        >
+        <DropdownMenuItem onClick={() => navigator.clipboard}>
           Copy payment ID
         </DropdownMenuItem>
         <DropdownMenuSeparator />

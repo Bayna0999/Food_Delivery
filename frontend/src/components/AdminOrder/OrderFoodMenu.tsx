@@ -23,9 +23,7 @@ const OrderFoodMenu = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white w-full h-[552px] rounded-xl">
-        <FoodMenu />
-      </div>
+      <div className="bg-white w-full h-[552px] rounded-xl"></div>
     </div>
   );
 };

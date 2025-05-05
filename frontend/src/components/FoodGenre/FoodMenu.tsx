@@ -49,7 +49,7 @@ const FoodMenu = ({
 
   const [food, setFood] = useState([]);
 
-  const handleClick = async (value: {}) => {
+  const handleClick = async (value: { _id: string; quantity: number }) => {
     const token = localStorage.getItem("token");
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
