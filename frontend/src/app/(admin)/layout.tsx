@@ -11,7 +11,7 @@ export default function AuthLayout({
         {" "}
         <Navigation />
       </div>
-      <div className="w-screen bg-[#F4F4F5] ">{children}</div>
+      <div className="w-screen h-fit bg-[#F4F4F5] ">{children}</div>
     </div>
   );
 }

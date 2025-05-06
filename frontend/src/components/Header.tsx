@@ -31,11 +31,13 @@ import axios from "axios";
 import { Button } from "./ui/button";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Label } from "@radix-ui/react-dropdown-menu";
+import UserOrder from "./UserOrder";
 const Header = () => {
   // const [card, setCard] = useState([]);
   const istrue = false;
   const [notifCount, SetNotifCount] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
+  const [order, setOrder] = useState();
   const HandleOnClick = () => {
     setIsClicked(!isClicked);
   };
@@ -51,7 +53,6 @@ const Header = () => {
   // };
   const [foods, setFoods] = useState<FoodType[]>([]);
 
-  // Load from localStorage on mount
   useEffect(() => {
     const storedFoods = JSON.parse(localStorage.getItem("foods") || "[]");
     setFoods(storedFoods);
@@ -61,17 +62,16 @@ const Header = () => {
   }, []);
 
   const handleCheckOut = async () => {
-    const value = localStorage.getItem("order");
+    const value = JSON.parse(localStorage.getItem("foods") || "[]");
     const token = localStorage.getItem("token");
-
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/foodOrder`,
       {
         totalPrice: "20000",
         FoodOrderItems: [
           {
-            food: value._id,
-            quantity: value.quantity,
+            food: value[0]._id,
+            quantity: value[0].quantity,
           },
         ],
       },
@@ -81,7 +81,7 @@ const Header = () => {
         },
       }
     );
-    localStorage.removeItem("order");
+
     localStorage.removeItem("foods");
     alert(response.data.success);
     window.location.reload();
@@ -186,7 +186,7 @@ const Header = () => {
                     className="flex flex-col mx-[24px] h-[540px] bg-white rounded-3xl  overflow-scroll"
                     value="Order"
                   >
-                    <OrderDetail
+                    {/* <OrderDetail
                       foodname="huushuur"
                       image="https://blog.russianfoods.com/wp-content/uploads/2011/11/%D0%B3%D1%83%D0%BB%D1%8F%D1%88-%D1%81-%D1%8F%D0%B1%D0%BB-1.jpg"
                       content="meat"
@@ -194,7 +194,8 @@ const Header = () => {
                       HandlePlus={handleOnClick}
                       orderCount={1}
                       price={12.99}
-                    />
+                    /> */}
+                    <UserOrder />
                   </TabsContent>
                 </Tabs>
                 <Tabs className="w-auto mx-[24px] bg-white h-[270px] rounded-3xl my-[20px]">

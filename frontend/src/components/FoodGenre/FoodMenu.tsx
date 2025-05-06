@@ -70,7 +70,6 @@ const FoodMenu = ({
     // );
 
     // alert(response.data.success);
-    localStorage.setItem("order", JSON.stringify(value));
     const card = JSON.parse(localStorage.getItem("foods") || "[]");
     const existingIndex = card.findIndex((o: any) => o._id === value._id);
     let updatedOrders;

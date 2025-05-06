@@ -2,6 +2,7 @@ import { Tabs, TabsContent } from "@radix-ui/react-tabs";
 import React from "react";
 import Card from "../FoodGenre/Card";
 import FoodMenu from "../FoodGenre/FoodMenu";
+import AddFood from "./Admin-FoodMenu/AddFood";
 
 const OrderFoodMenu = () => {
   return (
@@ -23,7 +24,7 @@ const OrderFoodMenu = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white w-full h-[552px] rounded-xl"></div>
+      <AddFood />
     </div>
   );
 };
