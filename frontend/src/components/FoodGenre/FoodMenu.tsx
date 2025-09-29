@@ -1,7 +1,7 @@
-"use client";
-import { Plus } from "lucide-react";
-import React, { useEffect, useState } from "react";
-import Card from "./Card";
+'use client';
+import { Plus } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import Card from './Card';
 import {
   Dialog,
   DialogContent,
@@ -9,10 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import FoodDetail from "./FoodDetail";
-import axios from "axios";
-import { FoodType } from "@/lib/utils";
+} from '@/components/ui/dialog';
+import FoodDetail from './FoodDetail';
+import axios from 'axios';
+import { FoodType } from '@/lib/utils';
 
 type FoodMenuProps = {
   HandleMinus: () => void;
@@ -35,7 +35,7 @@ const FoodMenu = ({
     );
     setFoods(res.data.Foods);
   };
-  console.log(foods, "foods");
+  console.log(foods, 'foods');
   useEffect(() => {
     fetchFoods();
     fetchOrders();
@@ -70,7 +70,7 @@ const FoodMenu = ({
     // );
 
     // alert(response.data.success);
-    const card = JSON.parse(localStorage.getItem("foods") || "[]");
+    const card = JSON.parse(localStorage.getItem('foods') || '[]');
     const existingIndex = card.findIndex((o: any) => o._id === value._id);
     let updatedOrders;
     if (existingIndex !== -1) {
@@ -80,18 +80,18 @@ const FoodMenu = ({
       value.quantity = orderCount;
       updatedOrders = [...card, value];
     }
-    localStorage.setItem("foods", JSON.stringify(updatedOrders));
-    window.location.reload();
-    console.log(value, "value");
+    localStorage.setItem('foods', JSON.stringify(updatedOrders));
+    // window.location.reload();
+    console.log(value, 'value');
   };
 
   return (
-    <div className="flex  flex-col  w-full h-fit mx-[20px] my-[20px] rounded-3xl gap-[36px] ">
+    <div className="flex  flex-col px-[88px] w-full h-fit gap-[36px] ">
       {foods?.map((value: any, index: number) => {
         return (
           <div key={index} className="flex flex-col ">
-            <h2 className="text-[30px] mx-[80px] text-white">{value.name}</h2>
-            <div className="flex flex-wrap gap-[36px] w-auto h-full mx-[80px] my-[54px] bg-neutral-700">
+            <h2 className="text-[30px]  text-white">{value.name}</h2>
+            <div className="flex flex-wrap gap-[36px] w-auto h-full  my-[54px] bg-neutral-700">
               {value.foods.map((food: FoodType, index: number) => {
                 return (
                   <div key={index} className="relative">
@@ -104,7 +104,9 @@ const FoodMenu = ({
                           price={food.price}
                         />
                       </DialogTrigger>
-                      <DialogContent className="[&>button]:hidden max-w-[874px]!">
+                      <DialogContent
+                        aria-description="food item"
+                        className="[&>button]:hidden max-w-[874px]!">
                         <FoodDetail
                           HandlePlus={HandlePlus}
                           HandleMinus={HandleMinus}
@@ -123,8 +125,7 @@ const FoodMenu = ({
                       onClick={() => {
                         handleClick(food);
                       }}
-                      className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-1 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 "
-                    >
+                      className="size-[44px] mb-[100px] mr-[20px] rounded-full flex justify-center items-center absolute z-1 bg-white hover:bg-amber-950 bottom-3.5 right-3.5 ">
                       <Plus />
                     </div>
                   </div>

@@ -1,10 +1,11 @@
-"use client";
-import React, { useState } from "react";
-import { Plus } from "lucide-react";
-import { Minus } from "lucide-react";
-import { X } from "lucide-react";
-import { DialogTitle } from "../ui/dialog";
-import { DialogClose } from "@radix-ui/react-dialog";
+'use client';
+import React, { useState } from 'react';
+import { Divide, Plus } from 'lucide-react';
+import { Minus } from 'lucide-react';
+import { X } from 'lucide-react';
+import { DialogTitle } from '../ui/dialog';
+import { DialogClose } from '@radix-ui/react-dialog';
+import { on } from 'events';
 type FoodProps = {
   image: string;
   foodname: string;
@@ -25,63 +26,90 @@ const FoodDetail = ({
   HandleMinus,
   onClick,
 }: FoodProps) => {
+  const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="flex w-[826px] h-[412px] rounded-2xl bg-white">
-      <div className="flex gap-[24px] w-auto mx-[20px] my-[20px] ">
-        <div className="flex rounded-2xl w-[48%]">
-          <img src={image} alt="" className="flex rounded-2xl" />
-        </div>
-        <div className="flex flex-col justify-between w-[48%]">
-          <div className="flex flex-col w-full h-fit">
-            <div className="flex w-full h-fit justify-end">
-              <DialogClose className="flex justify-center items-center size-[36px] bg-white rounded-full">
-                <X />
-              </DialogClose>
+    <>
+      {' '}
+      {isClicked === false ? (
+        <div className="flex w-[826px] h-[412px] rounded-2xl bg-white ">
+          <div className="flex gap-[24px] w-full  ">
+            <div className="flex rounded-2xl w-[48%]">
+              <img
+                src={image}
+                alt=""
+                className="flex rounded-2xl h-full w-full"
+              />
             </div>
-            <div className="flex flex-col w-full">
-              <DialogTitle className="text-[30px] text-[#FD543F] w-full">
-                {foodname}
-              </DialogTitle>
-              <p className="text-[16px] text-[#09090B] w-full h-fit">
-                {content}
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col justify-between w-full gap-[24px]">
-            <div className="flex justify-between">
-              <div className="flex flex-col">
-                <p className="text-[16px]">Total price</p>
-                <p className="text-[24px] text-[#09090B]">${price}</p>
-              </div>
-              <div className="flex gap-2.5 justify-center items-center">
-                <div
-                  onClick={HandleMinus}
-                  className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]"
-                >
-                  <Minus />
+            <div className="flex flex-col justify-between w-[48%]">
+              <div className="flex flex-col w-full h-fit">
+                <div className="flex w-full h-fit justify-end">
+                  <DialogClose className="flex justify-center items-center size-[36px] bg-white rounded-full">
+                    <X />
+                  </DialogClose>
                 </div>
-                <p className="text-[18px]">{orderCount}</p>
-                <div
-                  onClick={HandlePlus}
-                  className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]"
-                >
-                  <Plus />
+                <div className="flex flex-col w-full">
+                  <p className="text-[30px] text-[#FD543F] w-full">
+                    {foodname}
+                  </p>
+                  <p className="text-[16px] text-[#09090B] w-full h-fit">
+                    {content}
+                  </p>
                 </div>
               </div>
-            </div>
-            <DialogClose>
-              {" "}
-              <div
-                onClick={onClick}
-                className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white"
-              >
-                Add To Card
+              <div className="flex flex-col justify-between w-full gap-[24px]">
+                <div className="flex justify-between">
+                  <div className="flex flex-col">
+                    <p className="text-[16px]">Total price</p>
+                    <p className="text-[24px] text-[#09090B] font-bold">
+                      ${price}
+                    </p>
+                  </div>
+                  <div className="flex gap-2.5 justify-center items-center">
+                    <div
+                      onClick={HandleMinus}
+                      className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]">
+                      <Minus />
+                    </div>
+                    <p className="text-[18px] font-bold">{orderCount}</p>
+                    <div
+                      onClick={HandlePlus}
+                      className="flex bg-white rounded-full size-[44px] justify-center items-center border-[1px] border-[#E4E4E7]">
+                      <Plus />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  onClick={() => {
+                    setIsClicked(true);
+                    onClick();
+                  }}
+                  className="w-full h-[44px] flex justify-center items-center bg-black rounded-3xl text-white">
+                  Add To Card
+                </div>
               </div>
-            </DialogClose>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className="flex flex-col items-center justify-around w-[826px] h-[412px] rounded-2xl bg-white  ">
+          <p className="text-[24px]">Please select your delivery address!</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="147"
+            height="138"
+            viewBox="0 0 47 38"
+            fill="none">
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M21.7991 0.596961C21.5621 0.833946 21.5533 0.885337 21.5756 1.92128C21.5882 2.51399 21.558 3.03945 21.5085 3.08878C21.4589 3.13812 20.9338 3.24912 20.3416 3.33526C17.7449 3.7133 15.5618 4.47496 13.2448 5.81142C11.5719 6.77639 10.665 7.45534 9.29502 8.7686C7.87868 10.1263 6.94376 11.3102 5.73945 13.2714C5.39362 13.8348 4.72857 15.153 4.72857 15.2755C4.72857 15.3006 4.62011 15.5584 4.48757 15.8482C3.74197 17.4783 3.07868 20.488 3.0547 22.3498C3.03816 23.6374 3.08955 23.5821 1.80096 23.6998C0.824923 23.7891 0.670261 23.8285 0.507963 24.0288C0.252869 24.3438 0.277537 24.687 0.57668 24.9862C0.827565 25.2371 0.83941 25.2387 1.92263 25.1752C2.52376 25.14 4.33702 25.0463 5.95216 24.967C7.5673 24.8877 9.65965 24.7791 10.6018 24.7257C13.3074 24.5724 13.9921 24.5371 15.3493 24.4814C16.684 24.4266 19.1378 24.2965 21.8589 24.1363C22.7472 24.084 24.1157 24.0181 24.9 23.9898C25.6843 23.9615 26.6754 23.9187 27.1025 23.8948C27.5296 23.8709 28.9361 23.8048 30.2282 23.7478C31.5203 23.6909 33.2823 23.6026 34.1437 23.5516C35.0051 23.5006 36.2165 23.4337 36.8356 23.4028C37.4548 23.3718 38.2256 23.3276 38.5486 23.3045C38.8717 23.2814 39.6866 23.2369 40.3596 23.2056C44.748 23.0018 45.9307 22.9024 46.1319 22.7203C46.3949 22.4822 46.4013 21.8819 46.1432 21.6483C45.9851 21.5052 45.7859 21.4826 44.8718 21.5036C44.2755 21.5174 43.7555 21.4965 43.7161 21.4571C43.6768 21.4177 43.5706 20.8923 43.4801 20.2895C43.2966 19.0659 43.2607 18.8928 43.0592 18.2637C42.9816 18.0214 42.8667 17.625 42.804 17.3827C42.7412 17.1404 42.65 16.8657 42.6015 16.7723C42.5528 16.6788 42.5131 16.5524 42.5131 16.4916C42.5131 16.2622 41.5818 14.1867 41.0947 13.3304C40.4499 12.1971 39.8825 11.3245 39.5899 11.0166C39.4639 10.8838 39.2445 10.6211 39.1024 10.4327C38.5008 9.6347 37.2768 8.4117 36.2767 7.60912C35.4996 6.98538 33.3542 5.57287 32.7243 5.2702C29.9457 3.93502 27.3482 3.2502 24.5671 3.11981C23.6894 3.0786 23.2698 3.01977 23.1745 2.92453C23.0922 2.8423 23.0349 2.56655 23.0299 2.22992C23.0111 0.96257 22.9832 0.760824 22.7981 0.556337C22.5416 0.272953 22.1053 0.290671 21.7991 0.596961ZM14.0258 7.61842C14.0246 7.68577 13.8374 8.03336 13.6098 8.39104C12.9851 9.37236 11.7768 11.6416 11.7766 11.8338C11.7765 11.8777 11.6663 12.1543 11.5317 12.4486C11.3971 12.7428 11.287 13.0395 11.287 13.1079C11.287 13.1763 11.2461 13.2742 11.1961 13.3253C11.0641 13.4601 10.4461 15.9037 10.2689 16.9911C10.1168 17.924 10.0613 18.4796 9.96584 20.0256C9.88107 21.3974 9.63018 21.5874 7.8689 21.6143C6.50268 21.6351 6.25346 21.5303 6.0063 20.8308C5.82276 20.3114 5.94952 19.6268 6.59029 17.6763C7.11585 16.0768 7.22871 15.7949 7.7852 14.6908C8.6702 12.935 9.44126 11.76 10.6117 10.3837C12.1956 8.52123 14.0358 7.0307 14.0258 7.61842ZM27.5853 27.2417C25.9648 27.2809 21.6496 27.4782 19.4606 27.6133C17.6763 27.7234 16.8814 27.7677 14.2236 27.9058C12.6893 27.9853 10.9053 28.0934 10.2592 28.1459C9.61315 28.1983 7.82915 28.2899 6.29477 28.3493C4.76039 28.4088 3.44419 28.4772 3.36999 28.5014C3.23119 28.5466 3.24127 28.7064 3.44703 29.7165C3.59905 30.4633 4.03191 31.8915 4.24099 32.3364C4.35033 32.569 4.51048 32.9446 4.59682 33.1712C5.0378 34.3277 5.98143 35.9638 6.83139 37.0456C7.0905 37.3755 7.30976 37.6454 7.31867 37.6454C7.32758 37.6454 7.55233 37.5407 7.81819 37.4129C9.17511 36.7603 9.81323 36.4758 10.2427 36.3321C11.6326 35.8673 13.9558 35.5665 15.5406 35.6463C17.0146 35.7204 24.7422 35.7182 25.8233 35.6432C26.9541 35.5649 27.6191 35.431 28.2705 35.151C28.4858 35.0584 29.1466 34.7847 29.7388 34.5429C30.331 34.3011 30.8596 34.0684 30.9134 34.0256C30.9673 33.9828 31.5268 33.7243 32.1568 33.4511C32.7867 33.1779 33.3814 32.9108 33.4783 32.8577C33.6888 32.742 34.4536 32.3951 36.2972 31.579C37.051 31.2453 37.8879 30.8684 38.1571 30.7415C38.4263 30.6144 38.9108 30.3932 39.2339 30.2498C39.8794 29.9632 40.6706 29.5972 41.8954 29.0184C42.3364 28.8101 42.7246 28.6397 42.7582 28.6397C42.8976 28.6397 43.8704 28.1527 43.9328 28.0518C43.9701 27.9915 43.9191 27.8508 43.8197 27.7391C43.3785 27.2437 42.5186 27.1435 41.3807 27.4551C40.3999 27.7237 39.0696 28.1349 38.8423 28.2399C38.7346 28.2895 38.2941 28.4433 37.8634 28.5814C36.6667 28.9653 34.0379 29.8847 33.6795 30.0447C33.5041 30.123 33.1404 30.2614 32.8712 30.3524C32.602 30.4432 31.9413 30.6709 31.4029 30.8583C30.329 31.2323 27.0259 31.939 25.9129 32.0332C25.0525 32.1059 24.7474 32.037 24.5422 31.7239C24.1874 31.1823 24.4532 30.434 25.0871 30.1895C25.4272 30.0582 26.8271 29.8184 27.2654 29.8161C27.6294 29.8144 29.8645 29.4575 31.253 29.1793C32.2339 28.9829 32.9655 28.6054 33.1601 28.1953C33.3504 27.7944 33.3495 27.7117 33.1513 27.4093L32.9911 27.1647L30.7286 27.1925C29.4844 27.2078 28.0698 27.2299 27.5853 27.2417Z"
+              fill="#EF4444"
+            />
+          </svg>
+          <DialogClose>close</DialogClose>
+        </div>
+      )}
+    </>
   );
 };
 

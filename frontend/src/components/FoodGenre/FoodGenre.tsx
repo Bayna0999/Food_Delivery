@@ -1,11 +1,11 @@
-"use client";
-import React, { useEffect, useState } from "react";
+'use client';
+import React, { useEffect, useState } from 'react';
 
-import axios from "axios";
+import axios from 'axios';
 
-import Category from "./Category";
-import FoodMenu from "./FoodMenu";
-import MainPageImage from "../MainPageImage";
+import Category from './Category';
+import FoodMenu from './FoodMenu';
+import MainPageImage from '../MainPageImage';
 
 const FoodGenre = () => {
   const [orderCount, setOrderCount] = useState(1);
@@ -18,7 +18,7 @@ const FoodGenre = () => {
   const [istrue, setIstrue] = useState(false);
   const [foodIndex, setFoodIndex] = useState(-1);
   const [category, setCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
   const fetchCategoreis = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/category`
@@ -31,10 +31,10 @@ const FoodGenre = () => {
   useEffect(() => {
     fetchCategoreis();
   }, []);
-  console.log(selectedCategory, "category");
+  console.log(selectedCategory, 'category');
   return (
-    <div className="flex flex-col w-full h-full bg-neutral-700">
-      <div className="flex w-screen h-[136px]">
+    <div className="flex flex-col w-full h-full bg-[#404040]">
+      <div className="flex w-screen h-fit">
         <Category onclick={HandleOnClick} />
       </div>
       <FoodMenu

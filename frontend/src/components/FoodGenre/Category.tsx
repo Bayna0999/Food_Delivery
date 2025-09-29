@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import axios from "axios";
-import CategoryButton from "./CategoryButton";
+} from '@/components/ui/carousel';
+import axios from 'axios';
+import CategoryButton from './CategoryButton';
 
 const Category = ({ onclick }: any) => {
   const [category, setCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
   const fetchCategoreis = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/category`
@@ -27,10 +27,10 @@ const Category = ({ onclick }: any) => {
   // console.log(selectedCategory);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center px-[88px] gap-[40px] py-[30px]">
       <p className="text-[30px] text-white">Categories</p>
       <div>
-        <Carousel className=" flex  w-screen px-[100px]">
+        <Carousel className=" flex  w-screen ">
           <CarouselContent className="flex w-fit ">
             <CarouselItem className="flex">
               {category?.map((value: any, index: number) => {
