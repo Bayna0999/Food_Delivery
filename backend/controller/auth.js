@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 // import nodemailer from 'nodemailer';
-import { sendMail } from '../utils/sendmailer.js';
+// import { sendMail } from '../utils/sendmailer.js';
 
 dotenv.config();
 
