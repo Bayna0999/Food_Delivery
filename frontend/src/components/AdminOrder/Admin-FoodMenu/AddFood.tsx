@@ -1,13 +1,13 @@
-"use client";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import FoodCard from "./FoodCard";
-import { FoodType } from "@/lib/utils";
-import Card from "@/components/FoodGenre/Card";
-import { Pen } from "lucide-react";
-import { Dialog } from "@radix-ui/react-dialog";
-import { DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+'use client';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import FoodCard from './FoodCard';
+import { FoodType } from '@/lib/utils';
+import Card from '@/components/FoodGenre/Card';
+import { Pen } from 'lucide-react';
+import { Dialog } from '@radix-ui/react-dialog';
+import { DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,10 +16,14 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from '@/components/ui/dropdown-menu';
+type Props = {
+  foods: FoodType[];
+  name: string;
+};
 const AddFood = () => {
   const [foods, setFoods] = useState([]);
-  const [id, setId] = useState("");
+  const [id, setId] = useState('');
   const fectchFoods = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_ENDPOINT}/food/category?categoryId=${id}`
@@ -29,8 +33,8 @@ const AddFood = () => {
   useEffect(() => {
     fectchFoods();
   }, []);
-  console.log(foods, "foodss");
-  const [position, setPosition] = React.useState("");
+  console.log(foods, 'foodss');
+  const [position, setPosition] = React.useState('');
   return (
     <div className="flex flex-col w-fit  h-fit gap-[40px]">
       {foods.map((food: any, index: number) => {
@@ -87,9 +91,8 @@ const AddFood = () => {
                               <DropdownMenuContent className="w-56">
                                 <DropdownMenuRadioGroup
                                   value={position}
-                                  onValueChange={setPosition}
-                                >
-                                  {foods.map((el, index) => {
+                                  onValueChange={setPosition}>
+                                  {foods.map((el: Props) => {
                                     return (
                                       <DropdownMenuRadioItem value={el.name}>
                                         <div className="flex w-fit rounded-3xl bg-[#F4F4F5] px-[10px]">
